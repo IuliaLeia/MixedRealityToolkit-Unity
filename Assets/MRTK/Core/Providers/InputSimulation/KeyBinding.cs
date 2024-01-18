@@ -365,7 +365,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 if (SimulatingInput)
                     return SimulatedKeyUpSet.Contains(keyCode);
                 else
-                    return UnityEngine.Input.GetKeyUp(keyCode);
+                    return SRHydraInput.GetKeyUp(keyCode);
             }
             return false;
         }

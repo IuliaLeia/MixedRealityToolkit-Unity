@@ -55,17 +55,17 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos
 
         private void Update()
         {
-            if (UnityEngine.Input.GetKeyDown(toggleBarAsyncMethodKey))
+            if (SRHydraInput.GetKeyDown(toggleBarAsyncMethodKey))
             {
                 HandleButtonClick(demoObjectAsyncMethod.GetComponent<IProgressIndicatorDemoObject>());
             }
 
-            if (UnityEngine.Input.GetKeyDown(toggleAnimationKey))
+            if (SRHydraInput.GetKeyDown(toggleAnimationKey))
             {
                 HandleButtonClick(demoObjectAnimation.GetComponent<IProgressIndicatorDemoObject>());
             }
 
-            if (UnityEngine.Input.GetKeyDown(toggleSceneLoadKey))
+            if (SRHydraInput.GetKeyDown(toggleSceneLoadKey))
             {
                 HandleButtonClick(demoObjectSceneLoad.GetComponent<IProgressIndicatorDemoObject>());
             }

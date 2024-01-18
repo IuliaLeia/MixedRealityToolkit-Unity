@@ -7,7 +7,8 @@ using System.Runtime.InteropServices;
 public class SRHydraInput : MonoBehaviour
 {
     public static Vector3 CurrentMouse = new Vector3();
-    static ArrayList PressedKeys = new ArrayList();
+    static bool[] PressedKeys = new bool[254];
+    static bool[] PreviouslyPressedKeys = new bool[254];
 
     [DllImport("user32.dll")]
     private static extern short GetAsyncKeyState(int vKey);
@@ -22,21 +23,35 @@ public class SRHydraInput : MonoBehaviour
 
     public static bool GetKey(int vKey)
     {
-        if (keySource == 0)
-        {
-            return (GetAsyncKeyState(vKey) & 0x8000) != 0;
-        }
-        else if (keySource == 1)
-        {
-            return xrGetAsyncKeyState(vKey);
-        }
-        return false;
+        return PressedKeys[vKey];
     }
 
    public static bool GetKey(KeyCode vKey)
     {
         int virtualKey = keyCodeToVirtualKey[vKey];
         return GetKey(virtualKey);
+    }
+
+    public static bool GetKeyDown(int vKey)
+    {
+        return !PreviouslyPressedKeys[vKey] && PressedKeys[vKey];
+    }
+
+    public static bool GetKeyUp(int vKey)
+    {
+        return PreviouslyPressedKeys[vKey] && !PressedKeys[vKey];
+    }
+
+    public static bool GetKeyDown(KeyCode vKey)
+    {
+        int virtualKey = keyCodeToVirtualKey[vKey];
+        return GetKeyDown(virtualKey);
+    }
+
+    public static bool GetKeyUp(KeyCode vKey)
+    {
+        int virtualKey = keyCodeToVirtualKey[vKey];
+        return GetKeyUp(virtualKey);
     }
 
     private static Dictionary<KeyCode, int> keyCodeToVirtualKey = new Dictionary<KeyCode, int>()
@@ -108,6 +123,21 @@ public class SRHydraInput : MonoBehaviour
             }
             keySource = 0;
 
+        } 
+
+        for (int i = 0; i < PressedKeys.Length; i++)
+        {
+            PreviouslyPressedKeys[i] = PressedKeys[i];
+            
+            if (keySource == 0) //Unity ecosystem
+            {
+                PressedKeys[i] = (GetAsyncKeyState(i) & 0x8000) != 0;
+            }
+            else if (keySource == 1) //Hydra ecosystem
+            {
+                PressedKeys[i] = xrGetAsyncKeyState(i);
+            }
         }
+
     }
 }
