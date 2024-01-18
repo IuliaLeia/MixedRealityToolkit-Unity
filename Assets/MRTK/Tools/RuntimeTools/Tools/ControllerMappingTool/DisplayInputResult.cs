@@ -89,7 +89,7 @@ namespace Microsoft.MixedReality.Toolkit.Tools.Runtime
                     case AxisType.Digital:
                         if (Enum.TryParse($"JoystickButton{buttonNumber}", out KeyCode keyCode))
                         {
-                            displayTextMesh.text = $"Button {buttonNumber}: {UnityEngine.Input.GetKey(keyCode)}";
+                            displayTextMesh.text = $"Button {buttonNumber}: {SRHydraInput.GetKey(keyCode)}";
                         }
                         break;
                     case AxisType.None:
@@ -109,7 +109,7 @@ namespace Microsoft.MixedReality.Toolkit.Tools.Runtime
 
                             if (Enum.TryParse($"JoystickButton{i}", out KeyCode buttonCode))
                             {
-                                bool isPressed = UnityEngine.Input.GetKey(buttonCode);
+                                bool isPressed = SRHydraInput.GetKey(buttonCode);
                                 if (isPressed)
                                 {
                                     displayTextMesh.text += $"Button {i}: {isPressed}\n";

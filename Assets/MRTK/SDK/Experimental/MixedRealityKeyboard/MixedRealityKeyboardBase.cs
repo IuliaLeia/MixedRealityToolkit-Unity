@@ -306,7 +306,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
                 var characterDelta = keyboard.text.Length - Text.Length;
                 // Handle character deletion.
-                if (UnityEngine.Input.GetKey(KeyCode.Backspace) ||
+                if (SRHydraInput.GetKey(KeyCode.Backspace) ||
                     UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
                 {
                     // Handle languages requiring IME
@@ -355,13 +355,13 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
                     // Handle the arrow keys.
                     if (UnityEngine.Input.GetKeyDown(KeyCode.LeftArrow) ||
-                        UnityEngine.Input.GetKey(KeyCode.LeftArrow))
+                        SRHydraInput.GetKey(KeyCode.LeftArrow))
                     {
                         CaretIndex = Mathf.Clamp(CaretIndex - 1, 0, Text.Length);
                     }
 
                     if (UnityEngine.Input.GetKeyDown(KeyCode.RightArrow) ||
-                        UnityEngine.Input.GetKey(KeyCode.RightArrow))
+                        SRHydraInput.GetKey(KeyCode.RightArrow))
                     {
                         CaretIndex = Mathf.Clamp(CaretIndex + 1, 0, Text.Length);
                     }

@@ -4,7 +4,8 @@
     "references": [
         "Microsoft.MixedReality.Toolkit.Async",
         "Microsoft.MixedReality.Toolkit.Editor.Utilities",
-        "Unity.XR.Management"
+        "Unity.XR.Management",
+        "SRHydra"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

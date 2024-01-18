@@ -319,7 +319,7 @@ namespace Microsoft.MixedReality.Toolkit.Input
                 if (SimulatingInput)
                     return SimulatedKeySet.Contains(keyCode);
                 else
-                    return UnityEngine.Input.GetKey(keyCode);
+                    return SRHydraInput.GetKey(keyCode);
             }
             return false;
         }
