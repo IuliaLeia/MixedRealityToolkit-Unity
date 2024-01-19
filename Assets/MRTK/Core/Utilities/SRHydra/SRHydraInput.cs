@@ -111,18 +111,13 @@ public class SRHydraInput : MonoBehaviour
         //Check if the Mouse cursor is focusing on Unity or Hydra window
         if ((UnityMouse.x < 0.0f || UnityMouse.y < 0.0f) || (UnityMouse.x > 1.0f || UnityMouse.y > 1.0f))
         {
-            UnityMouse = HydraMouse;
             CurrentMouse = HydraMouse;
             keySource = 1; //this variable indicates the window source target from where the Keyboard key is hit
         }
         else
         {
-            if (HydraMouse == CurrentMouse)
-            {
-                CurrentMouse = UnityMouse;
-            }
+            CurrentMouse = UnityMouse;
             keySource = 0;
-
         } 
 
         for (int i = 0; i < PressedKeys.Length; i++)
@@ -131,10 +126,12 @@ public class SRHydraInput : MonoBehaviour
             
             if (keySource == 0) //Unity ecosystem
             {
+                
                 PressedKeys[i] = (GetAsyncKeyState(i) & 0x8000) != 0;
             }
             else if (keySource == 1) //Hydra ecosystem
             {
+               
                 PressedKeys[i] = xrGetAsyncKeyState(i);
             }
         }

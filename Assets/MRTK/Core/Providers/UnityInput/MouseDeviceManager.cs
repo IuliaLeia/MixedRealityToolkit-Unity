@@ -163,7 +163,7 @@ namespace Microsoft.MixedReality.Toolkit.Input.UnityInput
             {
                 base.Update();
 
-                if (UInput.mousePresent && Controller == null) { Enable(); }
+                if (UnityEngine.Input.mousePresent && Controller == null) { Enable(); }
 
                 Controller?.Update();
             }
